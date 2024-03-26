@@ -12,15 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: set up Go
+      - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: 1.21
 
-      - name: golangci-lint
+      - name: Golangci-lint
         uses: golangci/golangci-lint-action@v4
         with:
           version: v1.54
 
-      - name: test Go
+      - name: Test Go
         run: go test -v

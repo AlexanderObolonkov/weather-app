@@ -13,6 +13,10 @@ type WeathersProvider interface {
 	GetWeather() (string, error)
 }
 
+func GetWeather(provider WeathersProvider) (string, error) {
+	return provider.GetWeather()
+}
+
 type OpenWeatherProvider struct {
 	APIKey string
 }
@@ -42,8 +46,4 @@ func (p *OpenWeatherProvider) GetWeather() (string, error) {
 	}
 
 	return string(body), nil
-}
-
-func GetWeather(provider WeathersProvider) (string, error) {
-	return provider.GetWeather()
 }

@@ -23,4 +23,4 @@ jobs:
           version: v1.54
 
       - name: Test Go
-        run: go test -v
+        run: go test ./... -v

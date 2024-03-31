@@ -9,41 +9,43 @@ import (
 
 var apiServiceError = errors.New("program can't current weather")
 
+type TemperatureC float64
+
 type WeathersProvider interface {
-	GetWeather() (string, error)
+	GetWeather() ([]byte, error)
 }
 
-func GetWeather(provider WeathersProvider) (string, error) {
+func GetWeather(provider WeathersProvider) ([]byte, error) {
 	return provider.GetWeather()
 }
 
-type OpenWeatherProvider struct {
+type WeatherAPIProvider struct {
 	APIKey string
 }
 
-func NewOpenWeatherProvider(apiKey string) *OpenWeatherProvider {
-	return &OpenWeatherProvider{APIKey: apiKey}
+func NewWeatherAPIProvider(apiKey string) *WeatherAPIProvider {
+	return &WeatherAPIProvider{APIKey: apiKey}
 }
 
-func (p *OpenWeatherProvider) GetWeather() (string, error) {
+func (p *WeatherAPIProvider) GetWeather() ([]byte, error) {
 	url := fmt.Sprintf(
-		"http://api.openweathermap.org/data/2.5/weather?q=Kolpino&appid=%s&lang=ru&units=metric",
+		"https://api.weatherapi.com/v1/forecast.json?q=Kolpino&days=1&lang=ru&key=%s",
 		p.APIKey,
 	)
 
 	res, err := http.Get(url)
 	if err != nil {
-		return "", apiServiceError
+		return nil, apiServiceError
 	}
 	defer res.Body.Close()
 	if res.StatusCode != http.StatusOK {
-		return "", apiServiceError
+		return nil, apiServiceError
 	}
 
 	body, err := io.ReadAll(res.Body)
 	if err != nil {
-		return "", apiServiceError
+		return nil, apiServiceError
 	}
 
-	return string(body), nil
+	return body, nil
 }

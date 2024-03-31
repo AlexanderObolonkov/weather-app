@@ -7,8 +7,8 @@ import (
 
 type MockProvider struct{}
 
-func (m *MockProvider) GetWeather() (string, error) {
-	return "mock weather data", nil
+func (m *MockProvider) GetWeather() ([]byte, error) {
+	return []byte("mock weather data"), nil
 }
 
 func TestGetWeather(t *testing.T) {
@@ -20,13 +20,13 @@ func TestGetWeather(t *testing.T) {
 	}
 
 	expected := "mock weather data"
-	if weatherData != expected {
+	if string(weatherData) != expected {
 		t.Errorf("unexpected weather data, got: %s, want: %s", weatherData, expected)
 	}
 }
 
 func TestOpenWeatherProvider_GetWeather(t *testing.T) {
-	provider := NewOpenWeatherProvider("invalid_api_key")
+	provider := NewWeatherAPIProvider("invalid_api_key")
 	_, err := provider.GetWeather()
 
 	if err == nil {

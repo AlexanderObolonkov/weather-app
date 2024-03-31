@@ -14,13 +14,18 @@ func main() {
 		fmt.Println(err)
 		os.Exit(1)
 	}
-	openWeatherProvider := weather.NewOpenWeatherProvider(key)
+	weatherAPIProvider := weather.NewWeatherAPIProvider(key)
 
-	weatherData, err := weather.GetWeather(openWeatherProvider)
+	weatherData, err := weather.GetWeather(weatherAPIProvider)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
 	}
 
-	fmt.Println(weatherData)
+	weatherFormatted, err := weather.FormatWeather(weatherData)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	fmt.Println(weatherFormatted)
 }

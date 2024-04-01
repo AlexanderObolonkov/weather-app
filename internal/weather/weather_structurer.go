@@ -7,6 +7,8 @@ import (
 
 var formatterError = errors.New("программа не может форматировать данные")
 
+type TemperatureC float64
+
 type Weather struct {
 	Location struct {
 		Name      string `json:"name"`

@@ -9,8 +9,6 @@ import (
 
 var apiServiceError = errors.New("программа не может получить текущую погоду")
 
-type TemperatureC float64
-
 type WeathersProvider interface {
 	GetWeather() ([]byte, error)
 }

@@ -2,30 +2,29 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/AlexanderObolonkov/weather-app/configs"
+	"github.com/AlexanderObolonkov/weather-app/internal/formatter"
+	"github.com/AlexanderObolonkov/weather-app/internal/utils"
 	"github.com/AlexanderObolonkov/weather-app/internal/weather"
 )
 
 func main() {
-	key, err := configs.GetOpenWeatherAPIKey()
+	key, err := configs.GetWeatherAPIKey()
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		utils.ExitWithError(err)
 	}
 	weatherAPIProvider := weather.NewWeatherAPIProvider(key)
 
 	weatherData, err := weather.GetWeather(weatherAPIProvider)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		utils.ExitWithError(err)
 	}
 
-	weatherFormatted, err := weather.FormatWeather(weatherData)
+	weatherStructured, err := weather.StructWeather(weatherData)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		utils.ExitWithError(err)
 	}
-	fmt.Println(weatherFormatted)
+	formattedWeather := formatter.FormatWeather(weatherStructured)
+	fmt.Println(formattedWeather)
 }

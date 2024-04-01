@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-var apiServiceError = errors.New("program can't current weather")
+var apiServiceError = errors.New("программа не может получить текущую погоду")
 
 type TemperatureC float64
 

@@ -5,9 +5,9 @@ import (
 	"os"
 )
 
-var errNotSet = errors.New("program can't get api key")
+var errNotSet = errors.New("программа не может получить ключ api")
 
-func GetOpenWeatherAPIKey() (string, error) {
+func GetWeatherAPIKey() (string, error) {
 	APIKey, err := getEnv("API_KEY")
 	if err != nil {
 		return "", err

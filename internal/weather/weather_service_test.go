@@ -25,7 +25,7 @@ func TestGetWeather(t *testing.T) {
 	}
 }
 
-func TestOpenWeatherProvider_GetWeather(t *testing.T) {
+func TestWeatherAPIProvider_GetWeather(t *testing.T) {
 	provider := NewWeatherAPIProvider("invalid_api_key")
 	_, err := provider.GetWeather()
 

@@ -1,8 +1,9 @@
 package formatter
 
 import (
-	"github.com/AlexanderObolonkov/weather-app/internal/weather"
 	"testing"
+
+	"github.com/AlexanderObolonkov/weather-app/internal/weather"
 )
 
 func TestFormatWeather(t *testing.T) {

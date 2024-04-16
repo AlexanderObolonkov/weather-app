@@ -91,7 +91,7 @@ func TestFormatWeather(t *testing.T) {
 							Cloud:        50,
 							FeelsLikeC:   15,
 							WillItRain:   0,
-							ChanceOfRain: 0,
+							ChanceOfRain: 15,
 							WillItSnow:   0,
 							ChanceOfSnow: 0,
 						},
@@ -107,7 +107,7 @@ func TestFormatWeather(t *testing.T) {
 Восход: 06:30, закат: 19:00
 
 В 09:00 15.0°C, ощущается как 15.0°C, partly cloudy
-Облачность 50%, вероятность дождя: 0%, снега: 0%
+Облачность 50%, вероятность дождя: 15%, снега: 0%
 `
 
 	result := FormatWeather(testWeather)

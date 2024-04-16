@@ -103,7 +103,7 @@ func TestFormatWeather(t *testing.T) {
 
 	expectedOutput := `Локация: New York, NY, United States
 Дата и время: 2022-04-10 18:00
-На момент 08:00: 15.0°C, partly cloudy
+На момент 05:00: 15.0°C, partly cloudy
 Восход: 06:30, закат: 19:00
 
 В 06:00 15.0°C, ощущается как 15.0°C, partly cloudy

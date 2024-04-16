@@ -139,7 +139,6 @@ func TestStructWeather(t *testing.T) {
 	}
 
 	resultWeather, err := StructWeather(testData)
-
 	if err != nil {
 		t.Fatalf("Unexpected error: %v", err)
 	}
